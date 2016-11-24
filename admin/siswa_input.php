@@ -35,6 +35,21 @@
             $nis = $_POST['nis'];
             $nama_siswa = $_POST['nama_siswa'];
             $nama_jurusan = $_POST['nama_jurusan'];
+            $tempat_lahir = $_POST['tempat_lahir'];
+            $tgl_lahir = $_POST['tgl_lahir'];
+            $nama_orang_tua = $_POST['nama_orang_tua'];
+            $sekolah_asal = $_POST['sekolah_asal'];
+            $nomor_peserta = $_POST['nomor_peserta'];
+            $tahun_lulus = $_POST['tahun_lulus'];
+            $kepala_sekolah = $_POST['kepala_sekolah'];
+            $nomor_ijazah = $_POST['nomor_ijazah'];
+            $nilai_rata_rata = $_POST['nilai_rata_rata'];
+
+            // Ambil data gambar dari form
+            $nama_file = $_FILES['foto']['name'];
+            $ukuran_file = $_FILES['foto']['size'];
+            $tipe_file = $_FILES['foto']['type'];
+            $tmp_file = $_FILES['foto']['tmp_name'];
           }
           ?>
 
@@ -71,7 +86,7 @@
                 </tr>
                 <tr>
                   <td> Tanggal Lahir</td>
-                  <td><input class="form-control" type="date" name="tgl_lahir"></td>
+                  <td><input class="form-control" type="date" name="tgl_lahir" placeholder="tttt/bb/hh"></td>
                 </tr>
                 <tr>
                   <td>Nama Orang Tua</td>
@@ -87,7 +102,7 @@
                 </tr>
                 <tr>
                   <td>Tahun Lulus</td>
-                  <td><input class="form-control" type="text" placeholder="Tahun Lulus.." name="tahun_lulus"></td>
+                  <td><input class="form-control" type="date" placeholder="tttt/bb/hh" name="tahun_lulus"></td>
                 </tr>
                 <tr>
                   <td>Kepala Sekolah</td>
