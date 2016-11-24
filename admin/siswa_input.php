@@ -18,7 +18,6 @@
             <div class="page"></div>
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li class="active"><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>
-            <li><a href="?module=kelas"><i class="glyphicon glyphicon-list"></i> Data Kelas</a></li>
             <li><a href="?module=jurusan"><i class="glyphicon glyphicon-th"></i> Data Jurusan</a></li>
   				</ul>
   			</div>
