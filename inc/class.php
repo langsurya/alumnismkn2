@@ -23,6 +23,13 @@ class siswa
 		return $data;
 	}
 
+	public function jumlah($query){
+		$stmt = $this->conn->prepare($query);
+		$stmt->execute();
+		$row = $stmt->rowCount();
+		print($row);
+	}
+
 	public function create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file){
 		try {
 			if (empty($nama_file)) {

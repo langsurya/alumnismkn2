@@ -70,18 +70,67 @@
                     <tr>
                       <th width="5%">No</th>
                       <th>NIS</th>
+                      <th>Nomor Ijazah</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
-                      <th>Angkatan</th>
                       <th>Lulus Tahun</th>
                       <th style="text-align: center;" colspan="2">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
-                  </tbody>
-                </table>
+                  <?php 
+                  include_once '../inc/class.php';
+                  $siswa  = new siswa;
+                  $records_per_page=5;
+                  $query = "SELECT * FROM tbl_siswa ORDER BY tahun_lulus DESC";
+                  $newquery = $siswa->paging($query,$records_per_page);
+                  // penomoran halaman data pada halaman
+                  if (isset($_GET['page_no'])) {
+                    $page = $_GET['page_no'];
+                  }
 
+                  if (empty($page)) {
+                    $posisi = 0;
+                    $halaman = 1;
+                  }else{
+                    $posisi = ($page - 1) * $records_per_page;
+                  }
+                  $no=1+$posisi;
+                  foreach ($siswa->showData($newquery) as $value) {
+                  ?>
+                  <tr style="text-align: center;">
+                    <td><?php echo $no; ?></td>
+                    <td><?=$value['nis'];?></td>
+                    <td><a href="?module=siswa_tampil&no_ijazah=<?=$value['nomor_ijazah']?>"><?=$value['nomor_ijazah'];?></a></td>
+                    <td><?=$value['nama_siswa'];?></td>
+                    <td><?=$value['nama_jurusan'];?></td>
+                    <td><?=$value['tahun_lulus'];?></td>
+                    <td>
+                      <a href="?module=siswa_edit&nis=<?=$value['nis']?>" title="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                    </td>
+                    <td>
+                      <a href="?module=delete&nis=<?=$value['nis']?>" onclick="return confirm('Anda yakin ingin menghapus data Siswa yang bernama <?php echo $value['nama_siswa']; ?>')" title="Hapus"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                  </tr>
+                  <?php
+                  $no++;
+                  }
+
+                  ?>                    
+                  </tbody>
+                  <tr>
+                    <td colspan="8" align="center">
+                      <div class="pagination-wrap">
+                        <?php $siswa->paginglink($query,$records_per_page); ?>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <?php 
+                $query = "SELECT * FROM tbl_siswa";
+                echo "Jumlah Data Siswa : ";
+                $siswa->jumlah($query); 
+                ?>
 
               </div>
             </div>

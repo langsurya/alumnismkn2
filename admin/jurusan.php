@@ -134,7 +134,11 @@
                     </td>
                   </tr>
                 </table>
-
+                <?php 
+                $query = "SELECT * FROM tbl_jurusan";
+                echo "Jumlah Data Jurusan : ";
+                $siswa->jumlah($query); 
+                ?>
 
               </div>
             </div>
