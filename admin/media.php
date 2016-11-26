@@ -9,6 +9,9 @@ switch ($module) {
 	case 'siswa_input':
 		include_once 'siswa_input.php';
 		break;
+	case 'siswa_edit':
+		include_once 'siswa_edit.php';
+		break;
 
 	case 'jurusan':
 		include_once 'jurusan.php';

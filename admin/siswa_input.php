@@ -9,12 +9,11 @@
   <body>
   	<?php include_once 'navbar.php'; ?>
 
-
   	<div class="container-fluid">
   		<div class="row">
   			<div class="col-sm-3 col-md-2 sidebar">
   				<ul class="nav nav-sidebar">
-  					<li><a href="#">MENU UTAMA <span class="sr-only">(current)</span></a></li>
+  					<li class="active"><a href="#">MENU UTAMA <span class="sr-only">(current)</span></a></li>
             <div class="page"></div>
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li class="active"><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>

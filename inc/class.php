@@ -23,6 +23,14 @@ class siswa
 		return $data;
 	}
 
+	public function getData($id,$table,$key)
+	{
+		$stmt = $this->conn->prepare("SELECT * FROM $table WHERE $key=:key");
+		$stmt->execute(array(":key"=>$id));
+		$editRow=$stmt->fetch(PDO::FETCH_ASSOC);
+		return $editRow;
+	}
+
 	public function jumlah($query){
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
