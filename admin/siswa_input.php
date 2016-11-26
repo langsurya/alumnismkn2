@@ -54,50 +54,63 @@
 
             // set path folder tempat menyimpan gambar
             $path = "../images/siswa/".$nama_file;
-            // Cek apakah tipe file yang di upload adalah JPG/JPEG/PNG
-            if (!empty($nama_file)) {
-                                
-              if ($tipe_file == "image/jpeg" || $tipe_file == "image/png") {
-                # jika tipe file JPEG/JPEG/PNG, maka lakukan:
-                // cek apakah ukuran file sama atau lebih kecil dari 1MB
-                if ($ukuran_file <= 1000000) {
-                  # jika ukuran file kurang dari sama dengan 1MB, lakukan:
-                  // proses upload
-                  if (move_uploaded_file($tmp_file, $path)) { // cek apakah gambar berhasil di upload
-                    # jika gambar berhasil di upload, lakukan:
-                    // proses simpan ke database
-                    if ($siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file)) {
-                      header('location:?module=siswa&msg=success');
+
+            $stmt = $DB_con->prepare('SELECT * FROM tbl_siswa WHERE nomor_peserta=:nomor_peserta OR nomor_ijazah=:nomor_ijazah');
+            $stmt->bindparam(':nomor_peserta',$nomor_peserta);
+            $stmt->bindparam(':nomor_ijazah',$nomor_ijazah);
+            $stmt->execute();
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (count($results)>0 && $nomor_peserta == $results['nomor_peserta'] || $nomor_ijazah == $results['nomor_ijazah']) {
+                echo "<script> alert('Nomer peserta ($nomor_peserta) atau ijazah ($nomor_ijazah) sudah ada') </script>";
+                echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
+            }else{
+            
+              if (!empty($nama_file)) {
+                                  
+              // Cek apakah tipe file yang di upload adalah JPG/JPEG/PNG
+                if ($tipe_file == "image/jpeg" || $tipe_file == "image/png") {
+                  # jika tipe file JPEG/JPEG/PNG, maka lakukan:
+                  // cek apakah ukuran file sama atau lebih kecil dari 1MB
+                  if ($ukuran_file <= 1000000) {
+                    # jika ukuran file kurang dari sama dengan 1MB, lakukan:
+                    // proses upload
+                    if (move_uploaded_file($tmp_file, $path)) { // cek apakah gambar berhasil di upload
+                      # jika gambar berhasil di upload, lakukan:
+                      // proses simpan ke database
+                      $stmt = $DB_con->prepare('SELECT * FROM tbl_siswa WHERE nis=:nis');
+                      $stmt->bindparam(':nis',$nis);
+                      $stmt->execute();
+                      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                      if (count($result)>0) {
+                          echo "<script> alert('Nomer NIS ($nis) sudah ada') </script>";
+                          echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
+                      }else{  
+                      $siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                        header('location:?module=siswa&msg=success');
+                      }
+                    }else{
+                      // jika gambar gagal di upload
                     }
-                  }else{
-                    // jika gambar gagal di upload
                   }
                 }
-              }
-            }elseif(empty($nama_file)){              
-              // cek data nis peserta dan ijazah
-              $query = "SELECT * FROM tbl_siswa WHERE nis='$nis' OR nomor_peserta='$nomor_peserta' OR nomor_ijazah='$nomor_ijazah'";
-              
-              foreach ($siswa->showData($query) as $value) {
-                if ($value['nis']==$nis) {
-                  echo "<script> alert('NIs $nis sudah ada') </script>";
-                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
-                }elseif ($value['nomor_peserta']==$nomor_peserta) {
-                  echo "<script> alert('Peserta $nomor_peserta sudah ada') </script>";
-                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
-                }elseif ($value['nomor_ijazah']==$nomor_ijazah) {
-                  echo "<script> alert('Ijazah $nomor_ijazah sudah ada') </script>";
-                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
+              }elseif(empty($nama_file)){              
+                // cek data nis peserta dan ijazah                
+                $stmt = $DB_con->prepare('SELECT * FROM tbl_siswa WHERE nis=:nis');
+                $stmt->bindparam(':nis',$_POST['nis']);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result['nis']==$nis) {
+                    echo "<script> alert('Nomer NIS ($nis) sudah ada') </script>";
+                    echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
+                }else{
+
+                  $siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                  echo "<script> alert('Data Berhasil di tambah') </script>";
+                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa&msg=success'>";
+                  // header('location:?module=siswa&msg=success');
+
                 }
-              }                
-              /*if ($siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file)) {
-                    echo "<script> alert('Data Berhasil di tambah') </script>";
-                    echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
-                    // header('location:?module=siswa&msg=success');
-                  }else{
-                    echo "<script> alert('Data NIS,Peserta,Ijazah Sudah Ada') </script>";
-                    echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
-                  }*/
+              }
 
             }
           }

@@ -26,23 +26,24 @@ class siswa
 	public function create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file){
 		try {
 			if (empty($nama_file)) {
-				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ");
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan) VALUES(:nis,:nama_siswa,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan) ");
 			}elseif(!empty($nama_file)){
-				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,foto) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) ");				
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,foto) VALUES(:nis,:nama_siswa,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan,:nama_file) ");		
+				$stmt->bindparam(':nama_file',$nama_file);		
 			}
-			$stmt->bindparam(1,$nis);
-			$stmt->bindparam(2,$nama_siswa);
-			$stmt->bindparam(3,$tempat_lahir);
-			$stmt->bindparam(4,$tgl_lahir);
-			$stmt->bindparam(5,$nama_orang_tua);
-			$stmt->bindparam(6,$sekolah_asal);
-			$stmt->bindparam(7,$nomor_peserta);
-			$stmt->bindparam(8,$tahun_lulus);
-			$stmt->bindparam(9,$kepala_sekolah);
-			$stmt->bindparam(10,$nomor_ijazah);
-			$stmt->bindparam(11,$nilai_rata_rata);
-			$stmt->bindparam(12,$nama_jurusan);
-			$stmt->bindparam(13,$nama_file);
+			$stmt->bindparam(':nis',$nis);
+			$stmt->bindparam(':nama_siswa',$nama_siswa);
+			$stmt->bindparam(':tempat_lahir',$tempat_lahir);
+			$stmt->bindparam(':tgl_lahir',$tgl_lahir);
+			$stmt->bindparam(':nama_orang_tua',$nama_orang_tua);
+			$stmt->bindparam(':sekolah_asal',$sekolah_asal);
+			$stmt->bindparam(':nomor_peserta',$nomor_peserta);
+			$stmt->bindparam(':tahun_lulus',$tahun_lulus);
+			$stmt->bindparam(':kepala_sekolah',$kepala_sekolah);
+			$stmt->bindparam(':nomor_ijazah',$nomor_ijazah);
+			$stmt->bindparam(':nilai_rata_rata',$nilai_rata_rata);
+			$stmt->bindparam(':nama_jurusan',$nama_jurusan);
+			
 			$stmt->execute();
 
 			return true;
