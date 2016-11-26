@@ -23,6 +23,34 @@ class siswa
 		return $data;
 	}
 
+	public function create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file){
+		try {
+			if (empty($nama_file)) {
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ");
+			}elseif(!empty($nama_file)){
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nama_siswa,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,foto) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) ");				
+			}
+			$stmt->bindparam(1,$nis);
+			$stmt->bindparam(2,$nama_siswa);
+			$stmt->bindparam(3,$tempat_lahir);
+			$stmt->bindparam(4,$tgl_lahir);
+			$stmt->bindparam(5,$nama_orang_tua);
+			$stmt->bindparam(6,$sekolah_asal);
+			$stmt->bindparam(7,$nomor_peserta);
+			$stmt->bindparam(8,$tahun_lulus);
+			$stmt->bindparam(9,$kepala_sekolah);
+			$stmt->bindparam(10,$nomor_ijazah);
+			$stmt->bindparam(11,$nilai_rata_rata);
+			$stmt->bindparam(12,$nama_jurusan);
+			$stmt->bindparam(13,$nama_file);
+			$stmt->execute();
+
+			return true;
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
+
 	public function jurusan_tambah($id_jurusan,$nama_jurusan)
 	{
 		try {
