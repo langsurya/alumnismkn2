@@ -117,7 +117,7 @@
                         <a href="?module=jurusan_edit&id=<?=$value['id_jurusan']?>" title="edit"><span class="glyphicon glyphicon-edit"></span></a>
                       </td>
                       <td>
-                        <a href="?module=delete&jurusan_id=<?php print($value['id_jurusan']) ?>" onclick="return confirm('Anda yakin ingin menghapus data user <?php echo $value['nama_jurusan']; ?> ?')" title="Hapus"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="?module=delete&id_jurusan=<?php print($value['id_jurusan']) ?>" onclick="return confirm('Anda yakin ingin menghapus data user <?php echo $value['nama_jurusan']; ?> ?')" title="Hapus"><span class="glyphicon glyphicon-remove"></span></a>
                       </td>
                     </tr>
                     <?php

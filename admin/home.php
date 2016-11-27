@@ -27,7 +27,7 @@
   				<!-- Wrapper for slides -->
   				<div class="carousel-inner" role="listbox">
   					<div class="item active">
-  						<img src="../img/green.jpg" alt="...">
+            <img src="../images/header.jpg" alt="...">
   					</div>
   					<marquee>SELAMAT DATANG DI APLIKASI PENCARIAN DATA SISWA SMK N 2 KOTA TANGERANG</marquee>
   				</div>

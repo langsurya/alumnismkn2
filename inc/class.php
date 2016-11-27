@@ -31,6 +31,13 @@ class siswa
 		return $editRow;
 	}
 
+	public function delete($id,$table,$key){
+		$stmt = $this->conn->prepare("DELETE FROM $table WHERE $key=:id");
+		$stmt->bindparam(":id",$id);
+		$stmt->execute();
+		return true;
+	}
+
 	public function jumlah($query){
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
