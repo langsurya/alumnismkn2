@@ -19,6 +19,9 @@ switch ($module) {
 	case 'jurusan_input':
 		include_once 'jurusan_input.php';
 		break;
+	case 'jurusan_edit':
+		include_once 'jurusan_edit.php';
+		break;
 	
 	default:
 		include_once 'home.php';

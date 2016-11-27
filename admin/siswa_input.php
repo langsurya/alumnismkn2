@@ -188,7 +188,8 @@
                 </tr>
                 <tr>
                   <td>Foto</td>
-                  <td><input type="file" name="foto"></td>
+                  <td><input type="file" name="foto">
+                  <font color="red"> *contoh format nama file: tahunlulus_jurusan_nama.jpg/png</font></td>
                 </tr>
 
                 <tr>

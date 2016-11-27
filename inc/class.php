@@ -67,12 +67,56 @@ class siswa
 		}
 	}
 
+	public function update($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file){
+		try {
+
+			if (empty($nama_file)) {
+				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nama_siswa=:nama_siswa, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan WHERE nis=:nis");
+			}else{
+				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nama_siswa=:nama_siswa, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan, foto=:nama_file WHERE nis=:nis");
+				$stmt->bindparam(':nama_file',$nama_file);
+			}
+
+			$stmt->bindparam(':nis',$nis);
+			$stmt->bindparam(':nama_siswa',$nama_siswa);
+			$stmt->bindparam(':tempat_lahir',$tempat_lahir);
+			$stmt->bindparam(':tgl_lahir',$tgl_lahir);
+			$stmt->bindparam(':nama_orang_tua',$nama_orang_tua);
+			$stmt->bindparam(':sekolah_asal',$sekolah_asal);
+			$stmt->bindparam(':nomor_peserta',$nomor_peserta);
+			$stmt->bindparam(':tahun_lulus',$tahun_lulus);
+			$stmt->bindparam(':kepala_sekolah',$kepala_sekolah);
+			$stmt->bindparam(':nomor_ijazah',$nomor_ijazah);
+			$stmt->bindparam(':nilai_rata_rata',$nilai_rata_rata);
+			$stmt->bindparam(':nama_jurusan',$nama_jurusan);
+			
+			$stmt->execute();
+
+			return true;
+		} catch (PDOException $e) {
+			
+		}
+	}
+
 	public function jurusan_tambah($id_jurusan,$nama_jurusan)
 	{
 		try {
 			$stmt = $this->conn->prepare('INSERT INTO tbl_jurusan(id_jurusan,nama_jurusan) VALUES(?,?)');
 			$stmt->bindParam(1,$id_jurusan);
 			$stmt->bindParam(2,$nama_jurusan);
+			$stmt->execute();
+			return true;
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
+
+	public function jurusan_edit($id_jurusan,$nama_jurusan)
+	{
+		try {
+			$stmt = $this->conn->prepare('UPDATE tbl_jurusan SET nama_jurusan=:nama_jurusan WHERE id_jurusan=:id_jurusan');
+			$stmt->bindParam(':id_jurusan',$id_jurusan);
+			$stmt->bindParam(':nama_jurusan',$nama_jurusan);
 			$stmt->execute();
 			return true;
 		} catch (PDOException $e) {

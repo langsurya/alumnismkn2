@@ -26,11 +26,88 @@
   				<div class="col-sm-12">
   					<h2><span class="glyphicon glyphicon-edit"></span> Edit Data Siswa</h2>
   					<hr>
+  					<?php 
+  					if (isset($_GET['msg'])) {
+            if ($_GET['msg']=="success") {
+              $msg="
+              <div class='alert alert-success'>
+              <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+              <strong>Success!</strong> Data berhasil di Ubah.
+              </div>
+              ";
+            }
+          }
+
+          if (isset($msg)) {
+            echo $msg;
+          }
+  					?>
   				</div>
 
   				<?php 
   				include_once '../inc/class.php';
   				$siswa = new siswa;
+
+  				if (isset($_POST['btn-edit'])) {
+  					$nis = $_POST['nis'];
+  					$nama_siswa = $_POST['nama_siswa'];
+  					$nama_jurusan = $_POST['nama_jurusan'];
+  					$tempat_lahir = $_POST['tempat_lahir'];
+  					$tgl_lahir = $_POST['tgl_lahir'];
+  					$nama_orang_tua = $_POST['nama_orang_tua'];
+  					$sekolah_asal = $_POST['sekolah_asal'];
+  					$nomor_peserta = $_POST['nomor_peserta'];
+  					$tahun_lulus = $_POST['tahun_lulus'];
+  					$kepala_sekolah = $_POST['kepala_sekolah'];
+  					$nomor_ijazah = $_POST['nomor_ijazah'];
+  					$nilai_rata_rata = $_POST['nilai_rata_rata'];
+
+  					// Ambil data gambar dari form
+  					$nama_file = $_FILES['foto']['name'];
+  					$ukuran_file = $_FILES['foto']['size'];
+  					$tipe_file = $_FILES['foto']['type'];
+  					$tmp_file = $_FILES['foto']['tmp_name'];
+
+  					// set path folder tempat menyimpan gambar
+  					$path = "../images/siswa/".$nama_file;
+
+  					// jika foto tidak kosong
+  					if (!empty($nama_file)) {
+  						# cek apakah tipe file yang di upload adalah JPG/JPEG/PNG
+  						if ($tipe_file == "image/jpeg" || $tipe_file == "image/png") {
+  							# jika tipe file JPG/JPEG/PNG, maka lakukan:
+  							// cek apakah ukuran file sama atau lebih kecil dari 1MB
+  							if ($ukuran_file <= 1000000) {
+  								# jika ukuran file kurang dari sama denga 1MB, lakukan:
+
+  								// proses upload
+  								if (move_uploaded_file($tmp_file, $path)) { // cek apakah gambar berhasil di upload
+  									# jika gambar berhasil di upload, lakukan:
+  									$poto_lama = $_POST['poto_lama'];
+  									unlink('../images/siswa/'.$poto_lama);
+  									// proses simpan ke database
+  									$siswa->update($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                        echo "<script> alert('Data Berhasil di ubah') </script>";
+                        echo "<meta http-equiv='refresh' content='0; url=?module=siswa_edit&nis=$nis&msg=success'>";
+  								}else{
+  									// jika gambar gagal di upload
+  									echo "<script> alert('Gambar Gagal di ubah') </script>";
+                    echo "<meta http-equiv='refresh' content='0; url=?module=siswa_edit&nis=$nis'>";
+  								}
+  							}else{
+  								// ukuran foto tidak boleh melebihi 1mb
+  								echo "<script> alert('Ukuran gambar harus dibawah dari 1MB') </script>";
+                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa_edit&nis=$nis'>";
+  							}
+  						}
+  						// tipe file foto
+  					}elseif (empty($nama_file)) {
+  						# cek
+  						$siswa->update($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                  echo "<script> alert('Data Berhasil di ubah') </script>";
+                  echo "<meta http-equiv='refresh' content='0; url=?module=siswa_edit&nis=$nis&msg=success'>";
+  					}
+  				}
 
   				if (isset($_GET['nis'])) {
   					$nis = $_GET['nis'];
@@ -43,7 +120,9 @@
   						<table class="table table-bordered">
   							<tr>
   								<td>NIS</td>
-                  <td><input class="form-control" type="text" name="nis" value="<?=$nis?>"></td>
+                  <td>
+                  <input class="form-control" type="hidden" name="nis" value="<?=$nis?>">
+                  <input class="form-control" type="text" name="" value="<?=$nis?>" disabled></td>
   							</tr>
   							<tr>
                   <td>Nama</td>
@@ -72,48 +151,57 @@
                 </tr>
                 <tr>
                   <td>Tempat Lahir</td>
-                  <td><input class="form-control" type="text" placeholder="Tempat Lahir.." name="tempat_lahir"></td>
+                  <td><input class="form-control" type="text" value="<?=$tempat_lahir;?>" name="tempat_lahir"></td>
                 </tr>
                 <tr>
                   <td> Tanggal Lahir</td>
-                  <td><input class="form-control" type="date" name="tgl_lahir" placeholder="tttt/bb/hh"></td>
+                  <td><input class="form-control" type="date" name="tgl_lahir" value="<?=$tgl_lahir;?>"></td>
                 </tr>
                 <tr>
                   <td>Nama Orang Tua</td>
-                  <td><input class="form-control" type="text" placeholder="Nama Orang Tua.." name="nama_orang_tua"></td>
+                  <td><input class="form-control" type="text" name="nama_orang_tua" value="<?=$nama_orang_tua;?>"></td>
                 </tr>
                 <tr>
                   <td>Sekolah Asal</td>
-                  <td><input class="form-control" type="text" placeholder="Sekolah Asal.." name="sekolah_asal"></td>
+                  <td><input class="form-control" type="text" name="sekolah_asal" value="<?=$sekolah_asal;?>"></td>
                 </tr>
                 <tr>
                   <td>Nomor Peserta</td>
-                  <td><input class="form-control" type="text" placeholder="Nomor Peserta.." name="nomor_peserta"></td>
+                  <td><input class="form-control" type="text" name="nomor_peserta" value="<?=$nomor_peserta;?>"></td>
                 </tr>
                 <tr>
                   <td>Tahun Lulus</td>
-                  <td><input class="form-control" type="date" placeholder="tttt/bb/hh" name="tahun_lulus"></td>
+                  <td><input class="form-control" type="date" name="tahun_lulus" value="<?=$tahun_lulus;?>"></td>
                 </tr>
                 <tr>
                   <td>Kepala Sekolah</td>
-                  <td><input class="form-control" type="text" placeholder="Kepala Sekolah.." name="kepala_sekolah"></td>
+                  <td><input class="form-control" type="text" name="kepala_sekolah" value="<?=$kepala_sekolah;?>"></td>
                 </tr>
                 <tr>
                   <td>Nomor Ijazah</td>
-                  <td><input class="form-control" type="text" placeholder="No. DN-XX Mk XXXXXXXX" name="nomor_ijazah"></td>
+                  <td><input class="form-control" type="text" placeholder="No. DN-XX Mk XXXXXXXX" name="nomor_ijazah" value="<?=$nomor_ijazah;?>"></td>
                 </tr>
                 <tr>
                   <td>Nilai Rata-rata</td>
-                  <td><input class="form-control" type="text" placeholder="Nilai Rata-rata" name="nilai_rata_rata"></td>
+                  <td><input class="form-control" type="text" placeholder="Nilai Rata-rata" name="nilai_rata_rata" value="<?=$nilai_rata_rata;?>"></td>
                 </tr>
                 <tr>
                   <td>Foto</td>
-                  <td><input type="file" name="foto"></td>
+                  <td>
+                  <?php 
+                  if ($foto==true) {
+                  	$image = 'siswa/'.$foto;
+                  }else{
+                  	$image = 'profile.png';
+                  }
+                  ?>
+                  <img src="../images/<?=$image;?>" class="img-responsive" alt="Cinque Terre" width="150" height="150"><input type="hidden" name="poto_lama" value="<?=$foto;?>"><br>
+                  <input type="file" name="foto"><font color="red"> *contoh format nama file: tahunlulus_jurusan_nama.jpg/png</font></td>
                 </tr>
 
                 <tr>
                   <td colspan="2" align="center">
-                    <button type="submit" class="btn btn-primary" name="btn-save">
+                    <button type="submit" class="btn btn-primary" name="btn-edit">
                       <span class="glyphicon glyphicon-plus"></span> Simpan
                     </button>
                     <a href="?module=siswa" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp;Kembali</a>
