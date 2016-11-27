@@ -12,6 +12,12 @@ switch ($module) {
 	case 'siswa_edit':
 		include_once 'siswa_edit.php';
 		break;
+	case 'siswa_tampil':
+		include_once 'siswa_tampil.php';
+		break;
+	case 'siswa_search':
+		include_once 'siswa_search.php';
+		break;
 
 	case 'jurusan':
 		include_once 'jurusan.php';

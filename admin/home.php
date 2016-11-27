@@ -34,7 +34,98 @@
 
   				</div>
 
-  				<h1 class="page-header">Dashboard</h1>
+  				<!-- <h1 class="page-header">Dashboard</h1> -->
+
+          <div id="loginbox" style="margin-top: ;" class="mainbox col-md-12">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+
+                <div class="pull-right col-md-12">
+                  <form action="?module=home_search" method="POST">
+                    <div class="input-group">
+                      <input type="text" name="cari" class="form-control" placeholder="Cari NIM, Nama ..">
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" type="button">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div><br>
+                <!-- <a class="btn btn-success" href="?module=siswa_input">> </a> --><br>
+
+              </div>
+              <div style="padding-top: 10px" class="panel-body">
+                <br>
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th width="5%">No</th>
+                      <th>NIS</th>
+                      <th>Nomor Ijazah</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>Lulus Tahun</th>                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                  include_once '../inc/class.php';
+                  $siswa  = new siswa;
+                  $records_per_page=10;
+                  if (isset($_POST['cari'])) {
+                  $cari = $_POST['cari'];
+                  }else{
+                    $cari="";
+                  }
+                  $query = "SELECT * FROM tbl_siswa WHERE nama_siswa like '%$cari%' OR nomor_ijazah like '%$cari%'";
+                  $newquery = $siswa->paging($query,$records_per_page);
+                  // penomoran halaman data pada halaman
+                  if (isset($_GET['page_no'])) {
+                    $page = $_GET['page_no'];
+                  }
+
+                  if (empty($page)) {
+                    $posisi = 0;
+                    $halaman = 1;
+                  }else{
+                    $posisi = ($page - 1) * $records_per_page;
+                  }
+                  $no=1+$posisi;
+                  foreach ($siswa->showData($newquery) as $value) {
+                  ?>
+                  <tr style="text-align: center;">
+                    <td><?php echo $no; ?></td>
+                    <td><?=$value['nis'];?></td>
+                    <td><a href="?module=siswa_tampil&no_ijazah=<?=$value['nomor_ijazah']?>"><?=$value['nomor_ijazah'];?></a></td>
+                    <td><?=$value['nama_siswa'];?></td>
+                    <td><?=$value['nama_jurusan'];?></td>
+                    <td><?=$value['tahun_lulus'];?></td>                    
+                  </tr>
+                  <?php
+                  $no++;
+                  }
+
+                  ?>                    
+                  </tbody>
+                  <tr>
+                    <td colspan="8" align="center">
+                      <div class="pagination-wrap">
+                        <?php $siswa->paginglink($query,$records_per_page); ?>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <?php 
+                $query = "SELECT * FROM tbl_siswa WHERE nama_siswa like '%$cari%'";
+                echo "Jumlah Data Siswa : ";
+                $siswa->jumlah($query); 
+                ?>
+
+              </div>
+            </div>
+          </div>
 
   			</div>
 
