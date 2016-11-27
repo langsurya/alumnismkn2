@@ -72,6 +72,8 @@
                   <?php 
                   include_once 'inc/class.php';
                   $siswa  = new siswa;
+
+                  $records_per_page=5;
                   
                   // penomoran halaman data pada halaman
                   if (isset($_GET['page_no'])) {
@@ -89,7 +91,6 @@
                     $field = $_GET['field'];
                     $cari = $_GET['cari'];
 
-                    $records_per_page=10;
                     $q = "SELECT * FROM tbl_siswa WHERE $field like '%$cari%'";
                     $newq = $siswa->paging($q,$records_per_page);
                     foreach ($siswa->showData($newq) as $value) {
@@ -123,9 +124,7 @@
                 ?>
 
                     <?php
-                  }else{
-
-                  $records_per_page=10;
+                  }else{                
 
                   $query = "SELECT * FROM tbl_siswa";
                   $newquery = $siswa->paging($query,$records_per_page);
