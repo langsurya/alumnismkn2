@@ -49,21 +49,6 @@
               </div>
               <div style="padding-top: 10px" class="panel-body">
                 <br>
-                <?php 
-                if (isset($_GET['msg'])) {
-                  if ($_GET['msg']=="success") {
-                    # code...
-                  }elseif ($_GET['msg']=="delete") {
-                    # code...
-                  }elseif ($_GET['msg']=="edit") {
-                    # code...
-                  }
-                }
-
-                if (isset($msg)) {
-                  echo $msg;
-                }
-                ?>
 
                 <table class="table table-bordered">
                   <thead>

@@ -1,4 +1,8 @@
-<?php 
+<?php
+session_start();
+if (isset($_SESSION['username'])==0) {
+			header('Location: ../');
+		}
 $module = $_GET['module'];
 // error_reporting(0);
 switch ($module) {
@@ -27,6 +31,10 @@ switch ($module) {
 		break;
 	case 'jurusan_edit':
 		include_once 'jurusan_edit.php';
+		break;
+
+	case 'keluar':
+		include_once 'keluar.php';
 		break;
 	
 	default:

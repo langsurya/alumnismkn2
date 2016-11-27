@@ -1,6 +1,3 @@
-<?php 
-session_start();
-?>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   		<div class="container-fluid">
   			<div class="navbar-header">
@@ -21,7 +18,7 @@ session_start();
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li> <a href="" style="color: red"><?php echo $_SESSION['nama']; ?></a></li>
-            <li><a href="?module=sigin"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a href="?module=keluar"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
 <!-- 
           <form action="?module=cari_data" method="POST" class="navbar-form navbar-right">
