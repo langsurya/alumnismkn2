@@ -66,7 +66,7 @@
                   <?php 
                   include_once '../inc/class.php';
                   $siswa  = new siswa;
-                  $records_per_page=5;
+                  $records_per_page=10;
                   $query = "SELECT * FROM tbl_siswa ORDER BY tahun_lulus DESC";
                   $newquery = $siswa->paging($query,$records_per_page);
                   // penomoran halaman data pada halaman
