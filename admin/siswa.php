@@ -36,7 +36,7 @@
                 <div class="pull-right col-md-4">
                   <form action="?module=siswa_search" method="POST">
                     <div class="input-group">
-                      <input type="text" name="cari" class="form-control" placeholder="Cari NIM, Nama ..">
+                      <input type="text" name="cari" class="form-control" placeholder="Cari Kode Ijaah Dan Nama ..">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-default" type="button">
                           <span class="glyphicon glyphicon-search"></span>
