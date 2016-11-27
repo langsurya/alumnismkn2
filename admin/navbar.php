@@ -10,14 +10,14 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SMK N 2 KOTA TANGERANG</a>
+          <a class="navbar-brand" href="?module=home">SMK N 2 KOTA TANGERANG</a>
   			</div>
   			<div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="?module=home">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
+            <!-- <li><a href="?module=home">Dashboard</a></li> -->
+            <!-- <li><a href="#">Settings</a></li> -->
             <!-- <li><a href="#">Profile</a></li> -->
-            <li><a href="#">Help</a></li>
+            <!-- <li><a href="#">Help</a></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li> <a href="" style="color: red"><?php echo $_SESSION['nama']; ?></a></li>
