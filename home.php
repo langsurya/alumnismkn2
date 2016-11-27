@@ -19,7 +19,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="img/green.jpg" alt="...">
+                        <img src="img/header.jpg" alt="...">
                     </div>
                     <marquee>SELAMAT DATANG DI APLIKASI PENCARIAN DATA SISWA SMK N 2 KOTA TANGERANG</marquee>
                 </div>
@@ -73,7 +73,7 @@
                   include_once 'inc/class.php';
                   $siswa  = new siswa;
 
-                  $records_per_page=5;
+                  $records_per_page=10;
                   
                   // penomoran halaman data pada halaman
                   if (isset($_GET['page_no'])) {
@@ -126,7 +126,7 @@
                     <?php
                   }else{                
 
-                  $query = "SELECT * FROM tbl_siswa";
+                  $query = "SELECT * FROM tbl_siswa ORDER BY tahun_lulus DESC";
                   $newquery = $siswa->paging($query,$records_per_page);
 
                     foreach ($siswa->showData($newquery) as $value) {

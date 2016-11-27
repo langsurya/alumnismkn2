@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<title>Halaman Login</title>
+	<title>SMK NEGERI 2 KOTA TANGERANG</title>
 	<!-- Bootstrap CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" >
 	<!-- Style login css -->

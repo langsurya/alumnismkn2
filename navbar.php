@@ -20,7 +20,7 @@ session_start();
             <!-- <li><a href="#">Help</a></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="?module=login"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+            <li><a href="?module=login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
 <!-- 
           <form action="?module=cari_data" method="POST" class="navbar-form navbar-right">
