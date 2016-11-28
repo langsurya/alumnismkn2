@@ -18,6 +18,7 @@
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li class="active"><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>
             <li><a href="?module=jurusan"><i class="glyphicon glyphicon-th"></i> Data Jurusan</a></li>
+            <li><a href="?module=users"><i class="glyphicon glyphicon-list"></i> Data Users</a></li>
   				</ul>
   			</div>
 
@@ -33,7 +34,10 @@
           $siswa = new siswa;
           if (isset($_POST['btn-save'])) {
             $nis = $_POST['nis'];
+            $nisn = $_POST['nisn'];
             $nama_siswa = $_POST['nama_siswa'];
+            $alamat = $_POST['alamat'];
+            $no_telp = $_POST['no_telp'];
             $nama_jurusan = $_POST['nama_jurusan'];
             $tempat_lahir = $_POST['tempat_lahir'];
             $tgl_lahir = $_POST['tgl_lahir'];
@@ -44,6 +48,7 @@
             $kepala_sekolah = $_POST['kepala_sekolah'];
             $nomor_ijazah = $_POST['nomor_ijazah'];
             $nilai_rata_rata = $_POST['nilai_rata_rata'];
+            $keterangan = $_POST['keterangan'];
 
             // Ambil data gambar dari form
             $nama_file = $_FILES['foto']['name'];
@@ -86,7 +91,7 @@
                         if (move_uploaded_file($tmp_file, $path)) { // cek apakah gambar berhasil di upload
                           # jika gambar berhasil di upload, lakukan:
                           // proses simpan ke database
-                        $siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                        $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file);
                         echo "<script> alert('Data Berhasil di tambah') </script>";
                         echo "<meta http-equiv='refresh' content='0; url=?module=siswa&msg=success'>";
                         // header('location:?module=siswa&msg=success');
@@ -111,7 +116,7 @@
                     echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
                 }else{
 
-                  $siswa->create($nis,$nama_siswa,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$nama_file);
+                  $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file);
                   echo "<script> alert('Data Berhasil di tambah') </script>";
                   echo "<meta http-equiv='refresh' content='0; url=?module=siswa&msg=success'>";
                   // header('location:?module=siswa&msg=success');
@@ -131,8 +136,20 @@
                   <td><input class="form-control" type="text" name="nis" placeholder="Nomor Induk Siswa.." required></td>
                 </tr>
                 <tr>
+                  <td>NISN</td>
+                  <td><input class="form-control" type="text" name="nisn" placeholder="Nomor Induk Siswa Nasional.." required></td>
+                </tr>
+                <tr>
                   <td>Nama</td>
                   <td><input class="form-control" type="text" name="nama_siswa" placeholder="Nama Siswa.." required></td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td><textarea class="form-control" name="alamat"></textarea></td>
+                </tr>
+                <tr>
+                  <td>No. Telp</td>
+                  <td><input class="form-control" type="text" name="no_telp" placeholder="Nomor Telp.." required></td>
                 </tr>
                 <tr>
                   <td>Jurusan</td>
@@ -185,6 +202,10 @@
                 <tr>
                   <td>Nilai Rata-rata</td>
                   <td><input class="form-control" type="text" placeholder="Nilai Rata-rata" name="nilai_rata_rata"></td>
+                </tr>
+                <tr>
+                  <td>Keterangan</td>
+                  <td><textarea class="form-control" name="keterangan"></textarea></td>
                 </tr>
                 <tr>
                   <td>Foto</td>

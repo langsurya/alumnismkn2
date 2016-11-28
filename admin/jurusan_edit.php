@@ -36,6 +36,7 @@ if (isset($_GET['id'])) {
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>
             <li class="active"><a href="?module=jurusan"><i class="glyphicon glyphicon-th"></i> Data Jurusan</a></li>
+            <li><a href="?module=users"><i class="glyphicon glyphicon-list"></i> Data Users</a></li>
   				</ul>
   			</div>
 

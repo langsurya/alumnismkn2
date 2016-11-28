@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 27 Nov 2016 pada 17.46
+-- Generation Time: 28 Nov 2016 pada 03.56
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -37,12 +37,12 @@ CREATE TABLE `tbl_jurusan` (
 --
 
 INSERT INTO `tbl_jurusan` (`id_jurusan`, `nama_jurusan`, `keterangan`) VALUES
+('002', 'KULTUR JARINGAN', ''),
 ('1', 'TPHP', ''),
 ('2', 'PERTANIAN', ''),
 ('3', 'OTOMOTIF', ''),
 ('4', 'PANGAN', ''),
-('5', 'KIMIA', ''),
-('6', 'AKUTANSI', '');
+('5', 'KIMIA', '');
 
 -- --------------------------------------------------------
 
@@ -71,12 +71,10 @@ CREATE TABLE `tbl_siswa` (
 --
 
 INSERT INTO `tbl_siswa` (`nis`, `nama_siswa`, `tempat_lahir`, `tgl_lahir`, `nama_orang_tua`, `sekolah_asal`, `nomor_peserta`, `tahun_lulus`, `kepala_sekolah`, `nomor_ijazah`, `nilai_rata_rata`, `nama_jurusan`, `foto`) VALUES
-(12345, 'Elang Surya', 'Tangerang', '1992-10-05', 'Ohim Sidik', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-1', '2010-04-24', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020521', '9.50', 'PERTANIAN', ''),
 (12346, 'Khairunisa', 'Bogor', '1991-09-27', 'Anisa', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-3', '2016-12-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020523', '9.90', 'TPHP', 'khairunisa.jpg'),
-(12347, 'Ayu', 'Tangerang', '1990-10-28', 'Mulia', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-4', '2016-12-31', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020524', '9.50', 'TPHP', 'ayu.jpg'),
-(21235, 'Nisa', 'Tangerang', '1999-10-10', 'Ani', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-5', '2010-04-05', 'Sisisak', 'No. DN-30 Mk 0020525', '8.50', 'KIMIA', ''),
-(21236, 'Tiara Shanti', 'Bandung', '1993-04-20', 'Tiasis', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-7', '2011-04-05', 'Ir. Dr. Agung Prastio', 'No. DN-30 Mk 0020526', '9.50', 'PERTANIAN', 'neneng-rosediana1.jpg'),
-(123456, 'Intan Permata Indah', 'Depok', '2005-09-29', 'Bunga', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-2', '2012-09-27', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020522', '8.90', 'OTOMOTIF', 'unduhan.jpg');
+(12347, 'Rahayu Pratiwi', 'Tangerang', '1990-10-28', 'Mulia', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-4', '2016-12-31', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020524', '9.50', 'TPHP', 'ayu.jpg'),
+(21235, 'Anisa Rahayu', 'Tangerang', '1999-10-10', 'Ani', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-5', '2010-04-05', 'Sisisak', 'No. DN-30 Mk 0020525', '8.50', 'KIMIA', ''),
+(21236, 'Tiara Shanti', 'Bandung', '1993-04-20', 'Tiasis', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-7', '2011-04-05', 'Ir. Dr. Agung Prastio', 'No. DN-30 Mk 0020526', '9.50', 'PERTANIAN', 'neneng-rosediana1.jpg');
 
 -- --------------------------------------------------------
 

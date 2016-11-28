@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
     echo $username = $_POST['username'];
     echo $password = md5($_POST['password']);
 
-    $login->ceklogin($username,$password);
+    $login->ceklogin($username,$password,$level);
     // if ($login->ceklogin($username,$password)) {
     //     header('location: admin/');
     // }else{

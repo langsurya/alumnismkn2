@@ -33,6 +33,10 @@ switch ($module) {
 		include_once 'jurusan_edit.php';
 		break;
 
+	case 'users':
+		include_once 'users.php';
+		break;
+
 	case 'delete':
 		include_once 'delete.php';
 		break;

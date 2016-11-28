@@ -25,8 +25,14 @@ class login {
 				if ($count != 0) {
 					$_SESSION['username'] = $username;
 					$_SESSION['nama'] = $row['nama'];
+					$_SESSION['level'] = $row['level'];
+					if ($row['level']=='admin') {
 					header("Location: admin/");
 					return;
+					}elseif ($row['level']=='guru') {
+						header("Location: guru/");
+						return;
+					}
 				}
 			}
 		} catch (PDOException $e) {

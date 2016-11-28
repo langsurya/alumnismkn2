@@ -127,7 +127,7 @@
                 </table>
                 <?php 
                 $query = "SELECT * FROM users";
-                echo "Jumlah Data Jurusan : ";
+                echo "Jumlah Data Users : ";
                 $siswa->jumlah($query); 
                 ?>
 

@@ -18,6 +18,7 @@
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>
             <li><a href="?module=jurusan"><i class="glyphicon glyphicon-th"></i> Data Jurusan</a></li>
+            <li><a href="?module=users"><i class="glyphicon glyphicon-list"></i> Data Users</a></li>
   				</ul>
   			</div>
 
@@ -114,6 +115,20 @@
                     <?php
                     $no++;
                     }
+                    ?>
+                    </tbody>
+                  <tr>
+                    <td colspan="8" align="center">
+                      <div class="pagination-wrap">
+                        <?php $siswa->paginglink($query,$records_per_page); ?>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <?php 
+                echo "Jumlah Data Siswa : ";
+                $siswa->jumlah($q);                 
+
                   }else{
 
                     foreach ($siswa->showData($newquery) as $value) {
@@ -129,9 +144,8 @@
                     <?php
                     $no++;
                     }
-                  }
-                  ?>                    
-                  </tbody>
+                    ?>
+                    </tbody>
                   <tr>
                     <td colspan="8" align="center">
                       <div class="pagination-wrap">
@@ -144,9 +158,9 @@
                 $query = "SELECT * FROM tbl_siswa";
                 echo "Jumlah Data Siswa : ";
                 $siswa->jumlah($query); 
-                
-
-                ?>
+                  }
+                  ?>                    
+                  
 
               </div>
             </div>
