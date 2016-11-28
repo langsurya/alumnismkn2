@@ -73,7 +73,7 @@
                   include_once 'inc/class.php';
                   $siswa  = new siswa;
 
-                  $records_per_page=10;
+                  $records_per_page=15;
                   
                   // penomoran halaman data pada halaman
                   if (isset($_GET['page_no'])) {
