@@ -52,7 +52,14 @@
                 <br>
                 <?php 
           if (isset($_GET['msg'])) {
-            if ($_GET['msg']=="delete") {
+            if ($_GET['msg']=="success") {
+              $msg="
+              <div class=\"alert alert-success\">
+              <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
+              <strong>Success!</strong> Data berhasil di tambah.
+              </div>
+              ";
+            }elseif ($_GET['msg']=="delete") {
               $msg="
               <div class=\"alert alert-danger\">
               <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>

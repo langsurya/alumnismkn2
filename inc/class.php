@@ -139,6 +139,21 @@ class siswa
 		}
 	}
 
+	public function users_tambah($username,$password,$nama,$level)
+	{
+		try {
+			$stmt = $this->conn->prepare('INSERT INTO users VALUES("",:username,:password,:nama,:level)');
+			$stmt->bindParam(':username',$username);
+			$stmt->bindParam(':password',$password);
+			$stmt->bindParam(':nama',$nama);
+			$stmt->bindParam(':level',$level);
+			$stmt->execute();
+			return true;
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
+
 
 
 	public function paging($query,$records_per_page)

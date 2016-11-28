@@ -36,6 +36,9 @@ switch ($module) {
 	case 'users':
 		include_once 'users.php';
 		break;
+	case 'users_input':
+		include_once 'users_input.php';
+		break;
 
 	case 'delete':
 		include_once 'delete.php';
