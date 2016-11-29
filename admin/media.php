@@ -4,7 +4,7 @@ if (isset($_SESSION['username'])==0) {
 			header('Location: ../');
 		}
 $module = $_GET['module'];
-error_reporting(0);
+// error_reporting(0);
 switch ($module) {
 	case 'siswa':
 		include_once 'siswa.php';
@@ -38,6 +38,9 @@ switch ($module) {
 		break;
 	case 'users_input':
 		include_once 'users_input.php';
+		break;
+	case 'users_edit':
+		include_once 'users_edit.php';
 		break;
 
 	case 'delete':

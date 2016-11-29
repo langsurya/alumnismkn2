@@ -38,12 +38,27 @@
                   <td>
                   <input class="form-control" type="text"  value="<?=$nis?>" disabled></td>
   							</tr>
+                <tr>
+                  <td>NISN</td>
+                  <td>
+                  <input class="form-control" type="text"  value="<?=$nisn?>" disabled></td>
+                </tr>
   							<tr>
-                  <td>Nama</td>
-                  <td><input class="form-control" type="text" value="<?=$nama_siswa;?>" disabled></td>
+                  <td>ALAMAT</td>
+                  <td><textarea class="form-control" disabled><?=$alamat;?></textarea></td>
                 </tr>
                 <tr>
-                  <td>Jurusan</td>
+                  <td>No. TELP</td>
+                  <td>
+                  <input class="form-control" type="text"  value="<?=$no_telp;?>" disabled></td>
+                </tr>
+                <tr>
+                  <td>NIS</td>
+                  <td>
+                  <input class="form-control" type="text"  value="<?=$nis?>" disabled></td>
+                </tr>
+                <tr>
+                  <td>JURUSAN</td>
                   <td>
                     <select class="form-control" disabled style="width: 300px">
                       <option>-Pilih Jurusan-</option>  
@@ -98,6 +113,10 @@
                 <tr>
                   <td>Nilai Rata-rata</td>
                   <td><input class="form-control" type="text" value="<?=$nilai_rata_rata;?>" disabled></td>
+                </tr>
+                <tr>
+                  <td>KETERANGAN</td>
+                  <td><textarea class="form-control" disabled><?=$keterangan;?></textarea></td>
                 </tr>
                 <tr>
                   <td>Foto</td>

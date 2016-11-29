@@ -64,7 +64,7 @@ if (isset($_POST['btn-save'])) {
                   <td>
                   <select class="form-control" name="level">
                     <option value="admin">Admin</option>
-                    <option value="user">User</option>
+                    <option value="guru">Guru</option>
                   </select>
                   </td>
                 </tr>

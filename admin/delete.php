@@ -7,5 +7,8 @@ if (!empty($_GET['nis'])) {
 }elseif (!empty($_GET['id_jurusan'])) {
 	$obj->delete($_GET['id_jurusan'],'tbl_jurusan','id_jurusan');
 	header('location:?module=jurusan&msg=delete');
+}elseif (!empty($_GET['id_user'])) {
+	$obj->delete($_GET['id_user'],'users','id_user');
+	header('location:?module=users&msg=delete');
 }
 ?>

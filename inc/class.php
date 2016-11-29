@@ -154,6 +154,26 @@ class siswa
 		}
 	}
 
+	public function user_edit($id,$username,$password,$nama,$level)
+	{
+		try {
+			if (empty($password)) {
+			$stmt = $this->conn->prepare('UPDATE users SET username=:username, nama=:nama, level=:level WHERE id_user=:id_user');
+			}else{				
+				$stmt = $this->conn->prepare('UPDATE users SET username=:username, password=:password, nama=:nama, level=:level WHERE id_user=:id_user');
+			$stmt->bindParam(':password',$password);
+			}
+			$stmt->bindParam(':id_user',$id);
+			$stmt->bindParam(':username',$username);
+			$stmt->bindParam(':nama',$nama);
+			$stmt->bindParam(':level',$level);
+			$stmt->execute();
+			return true;
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
+
 
 
 	public function paging($query,$records_per_page)
