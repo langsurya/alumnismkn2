@@ -17,8 +17,6 @@
             <div class="page"></div>
   					<li><a href="?module=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li class="active"><a href="?module=siswa"><i class="glyphicon glyphicon-user"></i> Data Siswa</a></li>
-            <li><a href="?module=jurusan"><i class="glyphicon glyphicon-th"></i> Data Jurusan</a></li>
-            <li><a href="?module=users"><i class="glyphicon glyphicon-list"></i> Data Users</a></li>
   				</ul>
   			</div>
 
@@ -49,6 +47,7 @@
             $nomor_ijazah = $_POST['nomor_ijazah'];
             $nilai_rata_rata = $_POST['nilai_rata_rata'];
             $keterangan = $_POST['keterangan'];
+            $guru = $_SESSION['nama'];
 
             // Ambil data gambar dari form
             $nama_file = $_FILES['foto']['name'];
@@ -91,7 +90,7 @@
                         if (move_uploaded_file($tmp_file, $path)) { // cek apakah gambar berhasil di upload
                           # jika gambar berhasil di upload, lakukan:
                           // proses simpan ke database
-                        $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,'admin');
+                        $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,$guru);
                         echo "<script> alert('Data Berhasil di tambah') </script>";
                         echo "<meta http-equiv='refresh' content='0; url=?module=siswa&msg=success'>";
                         // header('location:?module=siswa&msg=success');
@@ -116,7 +115,7 @@
                     echo "<meta http-equiv='refresh' content='0; url=?module=siswa_input'>";
                 }else{
 
-                  $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,'admin');
+                  $siswa->create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,$guru);
                   echo "<script> alert('Data Berhasil di tambah') </script>";
                   echo "<meta http-equiv='refresh' content='0; url=?module=siswa&msg=success'>";
                   // header('location:?module=siswa&msg=success');

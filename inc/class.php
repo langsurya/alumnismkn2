@@ -45,12 +45,12 @@ class siswa
 		print($row);
 	}
 
-	public function create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file){
+	public function create($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,$guru){
 		try {
 			if (empty($nama_file)) {
-				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nisn,nama_siswa,alamat,no_telp,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,keterangan) VALUES(:nis,:nisn,:nama_siswa,:alamat,:no_telp,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan,:keterangan) ");
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nisn,nama_siswa,alamat,no_telp,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,keterangan,guru) VALUES(:nis,:nisn,:nama_siswa,:alamat,:no_telp,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan,:keterangan,:guru) ");
 			}elseif(!empty($nama_file)){
-				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nisn,nama_siswa,alamat,no_telp,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,keterangan,foto) VALUES(:nis,:nisn,:nama_siswa,:alamat,:no_telp,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan,:keterangan,:nama_file) ");		
+				$stmt = $this->conn->prepare("INSERT INTO tbl_siswa(nis,nisn,nama_siswa,alamat,no_telp,tempat_lahir,tgl_lahir,nama_orang_tua,sekolah_asal,nomor_peserta,tahun_lulus,kepala_sekolah,nomor_ijazah,nilai_rata_rata,nama_jurusan,keterangan,foto,guru) VALUES(:nis,:nisn,:nama_siswa,:alamat,:no_telp,:tempat_lahir,:tgl_lahir,:nama_orang_tua,:sekolah_asal,:nomor_peserta,:tahun_lulus,:kepala_sekolah,:nomor_ijazah,:nilai_rata_rata,:nama_jurusan,:keterangan,:nama_file,:guru) ");		
 				$stmt->bindparam(':nama_file',$nama_file);		
 			}
 			$stmt->bindparam(':nis',$nis);
@@ -69,6 +69,7 @@ class siswa
 			$stmt->bindparam(':nilai_rata_rata',$nilai_rata_rata);
 			$stmt->bindparam(':nama_jurusan',$nama_jurusan);
 			$stmt->bindparam(':keterangan',$keterangan);
+			$stmt->bindparam(':guru',$guru);
 			
 			$stmt->execute();
 
@@ -78,13 +79,13 @@ class siswa
 		}
 	}
 
-	public function update($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file){
+	public function update($nis,$nisn,$nama_siswa,$alamat,$no_telp,$tempat_lahir,$tgl_lahir,$nama_orang_tua,$sekolah_asal,$nomor_peserta,$tahun_lulus,$kepala_sekolah,$nomor_ijazah,$nilai_rata_rata,$nama_jurusan,$keterangan,$nama_file,$guru){
 		try {
 
 			if (empty($nama_file)) {
-				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nisn=:nisn, nama_siswa=:nama_siswa, alamat=:alamat, no_telp=:no_telp, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan, keterangan=:keterangan WHERE nis=:nis");
+				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nisn=:nisn, nama_siswa=:nama_siswa, alamat=:alamat, no_telp=:no_telp, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan, keterangan=:keterangan, guru=:guru WHERE nis=:nis");
 			}else{
-				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nisn=:nisn, nama_siswa=:nama_siswa, alamat=:alamat, no_telp=:no_telp, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan, keterangan=:keterangan, foto=:nama_file WHERE nis=:nis");
+				$stmt = $this->conn->prepare("UPDATE tbl_siswa SET nisn=:nisn, nama_siswa=:nama_siswa, alamat=:alamat, no_telp=:no_telp, tempat_lahir=:tempat_lahir, tgl_lahir=:tgl_lahir, nama_orang_tua=:nama_orang_tua, sekolah_asal=:sekolah_asal, nomor_peserta=:nomor_peserta, tahun_lulus=:tahun_lulus, kepala_sekolah=:kepala_sekolah, nomor_ijazah=:nomor_ijazah, nilai_rata_rata=:nilai_rata_rata, nama_jurusan=:nama_jurusan, keterangan=:keterangan, foto=:nama_file, guru=:guru WHERE nis=:nis");
 				$stmt->bindparam(':nama_file',$nama_file);
 			}
 
@@ -104,6 +105,7 @@ class siswa
 			$stmt->bindparam(':nilai_rata_rata',$nilai_rata_rata);
 			$stmt->bindparam(':nama_jurusan',$nama_jurusan);
 			$stmt->bindparam(':keterangan',$keterangan);
+			$stmt->bindparam(':guru',$guru);
 			
 			$stmt->execute();
 
