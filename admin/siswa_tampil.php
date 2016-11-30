@@ -112,6 +112,7 @@
                   <td colspan="2" align="center">                   
                     <a href="?module=siswa" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp;Kembali</a>
                   </td>
+                  <a style="margin-bottom:10px;" href="print_siswa.php?nomor_ijazah=<?=$nomor_ijazah?>" target="_blank" class="btn btn-default pull-right"><span class="glyphicon glyphicon-print"></span> Cetak</a>
                 </tr>
             </table>
   					<hr>

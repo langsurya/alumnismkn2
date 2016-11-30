@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 28 Nov 2016 pada 03.56
+-- Generation Time: 29 Nov 2016 pada 06.02
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -52,7 +52,10 @@ INSERT INTO `tbl_jurusan` (`id_jurusan`, `nama_jurusan`, `keterangan`) VALUES
 
 CREATE TABLE `tbl_siswa` (
   `nis` int(15) NOT NULL,
+  `nisn` int(50) NOT NULL,
   `nama_siswa` varchar(150) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `nama_orang_tua` varchar(50) NOT NULL,
@@ -63,18 +66,21 @@ CREATE TABLE `tbl_siswa` (
   `nomor_ijazah` varchar(200) NOT NULL,
   `nilai_rata_rata` varchar(50) NOT NULL,
   `nama_jurusan` varchar(50) NOT NULL,
-  `foto` varchar(100) NOT NULL
+  `keterangan` text NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `guru` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_siswa`
 --
 
-INSERT INTO `tbl_siswa` (`nis`, `nama_siswa`, `tempat_lahir`, `tgl_lahir`, `nama_orang_tua`, `sekolah_asal`, `nomor_peserta`, `tahun_lulus`, `kepala_sekolah`, `nomor_ijazah`, `nilai_rata_rata`, `nama_jurusan`, `foto`) VALUES
-(12346, 'Khairunisa', 'Bogor', '1991-09-27', 'Anisa', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-3', '2016-12-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020523', '9.90', 'TPHP', 'khairunisa.jpg'),
-(12347, 'Rahayu Pratiwi', 'Tangerang', '1990-10-28', 'Mulia', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-4', '2016-12-31', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020524', '9.50', 'TPHP', 'ayu.jpg'),
-(21235, 'Anisa Rahayu', 'Tangerang', '1999-10-10', 'Ani', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-5', '2010-04-05', 'Sisisak', 'No. DN-30 Mk 0020525', '8.50', 'KIMIA', ''),
-(21236, 'Tiara Shanti', 'Bandung', '1993-04-20', 'Tiasis', 'SMK Negeri 2 Kota Tangerang', '4-10-30-02-002-056-7', '2011-04-05', 'Ir. Dr. Agung Prastio', 'No. DN-30 Mk 0020526', '9.50', 'PERTANIAN', 'neneng-rosediana1.jpg');
+INSERT INTO `tbl_siswa` (`nis`, `nisn`, `nama_siswa`, `alamat`, `no_telp`, `tempat_lahir`, `tgl_lahir`, `nama_orang_tua`, `sekolah_asal`, `nomor_peserta`, `tahun_lulus`, `kepala_sekolah`, `nomor_ijazah`, `nilai_rata_rata`, `nama_jurusan`, `keterangan`, `foto`, `guru`) VALUES
+(12346, 0, 'Khairunisa', '', '', 'Bogor', '1991-09-27', 'Anisa', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-3', '2016-12-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020523', '9.90', 'TPHP', '', 'khairunisa.jpg', ''),
+(12347, 21233, 'Rahayu Pratiwi', '', '0219233747', 'Tangerang', '1990-10-28', 'Mulia', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-4', '2016-12-31', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020524', '9.50', 'TPHP', '', 'ayu.jpg', 'Erlang Surya'),
+(542312, 1231381271, 'Putri Azahra', 'pamulang', '02384748', 'Tangerang', '1997-10-27', 'Tini', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-055-8', '2013-09-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020544', '8.50', 'TPHP', 'belajar', '', 'Erlang Surya'),
+(20132138, 1231381274, 'Bimbi', 'Kalideres jakarta barat\r\nJakarta Selatan', '02384748', 'Pamulang', '1989-09-23', 'Ramdani', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-8', '2011-09-30', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020528', '8.50', 'KULTUR JARINGAN', 'tauran\r\nnilai merah', '', ''),
+(201321345, 1834893248, 'Dian', 'jl kebayoran baru\r\njakarta', '01928366', 'Jakarta', '1998-10-02', 'Tini', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-051-9', '2016-12-26', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020512', '9.50', 'KULTUR JARINGAN', 'rajin belajar', '', '');
 
 -- --------------------------------------------------------
 
@@ -86,15 +92,19 @@ CREATE TABLE `users` (
   `id_user` int(5) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `nama` varchar(50) NOT NULL
+  `nama` varchar(50) NOT NULL,
+  `level` enum('admin','guru') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `password`, `nama`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin 1');
+INSERT INTO `users` (`id_user`, `username`, `password`, `nama`, `level`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin 1', 'admin'),
+(2, 'erlang', '622c84b69ee448a07d80de5cbeb13e3d', 'Erlang Surya', 'guru'),
+(3, '2011140204', 'a9200c1823cc336d9f59881d1d3a7cb9', 'Ingka', 'admin'),
+(5, 'ikha', '45eeab56b6b9a205cd497d64a7bde06e', 'Maratus Solihkah', 'guru');
 
 --
 -- Indexes for dumped tables
@@ -129,7 +139,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
