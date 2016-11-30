@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 29 Nov 2016 pada 06.02
+-- Generation Time: 30 Nov 2016 pada 02.46
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -76,11 +76,10 @@ CREATE TABLE `tbl_siswa` (
 --
 
 INSERT INTO `tbl_siswa` (`nis`, `nisn`, `nama_siswa`, `alamat`, `no_telp`, `tempat_lahir`, `tgl_lahir`, `nama_orang_tua`, `sekolah_asal`, `nomor_peserta`, `tahun_lulus`, `kepala_sekolah`, `nomor_ijazah`, `nilai_rata_rata`, `nama_jurusan`, `keterangan`, `foto`, `guru`) VALUES
-(12346, 0, 'Khairunisa', '', '', 'Bogor', '1991-09-27', 'Anisa', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-3', '2016-12-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020523', '9.90', 'TPHP', '', 'khairunisa.jpg', ''),
+(12346, 0, 'Khairunisa', 'Tangerang Selatan, banten', '021937728', 'Bogor', '1991-09-27', 'Anisa', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-3', '2016-12-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020523', '9.90', 'TPHP', 'Rajin Belajar\r\nrajin mengaji', 'khairunisa.jpg', 'admin'),
 (12347, 21233, 'Rahayu Pratiwi', '', '0219233747', 'Tangerang', '1990-10-28', 'Mulia', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-4', '2016-12-31', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020524', '9.50', 'TPHP', '', 'ayu.jpg', 'Erlang Surya'),
 (542312, 1231381271, 'Putri Azahra', 'pamulang', '02384748', 'Tangerang', '1997-10-27', 'Tini', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-055-8', '2013-09-01', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020544', '8.50', 'TPHP', 'belajar', '', 'Erlang Surya'),
-(20132138, 1231381274, 'Bimbi', 'Kalideres jakarta barat\r\nJakarta Selatan', '02384748', 'Pamulang', '1989-09-23', 'Ramdani', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-8', '2011-09-30', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020528', '8.50', 'KULTUR JARINGAN', 'tauran\r\nnilai merah', '', ''),
-(201321345, 1834893248, 'Dian', 'jl kebayoran baru\r\njakarta', '01928366', 'Jakarta', '1998-10-02', 'Tini', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-051-9', '2016-12-26', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020512', '9.50', 'KULTUR JARINGAN', 'rajin belajar', '', '');
+(20132138, 1231381274, 'Bimbi', 'Kalideres jakarta barat\r\nJakarta Selatan', '02384748', 'Pamulang', '1989-09-23', 'Ramdani', 'SMK Negeri  2 Kota Tangerang', '4-10-30-02-002-056-8', '2011-09-30', 'Drs. H. Purwanto Adi Tjahjono', 'No. DN-30 Mk 0020528', '8.50', 'KULTUR JARINGAN', 'tauran\r\nnilai merah', '', '');
 
 -- --------------------------------------------------------
 
