@@ -1,7 +1,7 @@
 <?php
 
 $module = $_GET['module'];
-// error_reporting(0);
+error_reporting(0);
 switch ($module) {
 	case 'siswa':
 		include_once 'siswa.php';

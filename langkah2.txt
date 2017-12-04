@@ -1,0 +1,6 @@
+langkah-langkah menjalankan aplikasi
+
+-buka xampp control panel
+-start Apache dan MySQL
+-kemudian buka browser
+-localhost/smkn2
